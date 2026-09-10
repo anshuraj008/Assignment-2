@@ -1,0 +1,16 @@
+{
+  "name": "bangalore-pincode-explorer-server",
+  "version": "1.0.0",
+  "description": "Express REST API for Bangalore Pincode Explorer",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "author": "Anshu Raj",
+  "license": "ISC"
+}
