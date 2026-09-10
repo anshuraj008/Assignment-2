@@ -14,7 +14,8 @@ import {
   Compass
 } from 'lucide-react';
 
-const API_BASE_URL = 'http://localhost:4000';
+// Base URL for API calls (uses relative URL on Vercel/proxied dev, or configurable via env)
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export default function App() {
   const [query, setQuery] = useState('');

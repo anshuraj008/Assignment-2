@@ -11,15 +11,19 @@ app.use(cors());
 app.use(express.json());
 
 // Load Bangalore pincodes dataset
-const dataPath = path.join(__dirname, '..', '..', 'data', 'bangalore-pincodes.json');
 let pincodeData = [];
-
 try {
-  const rawData = fs.readFileSync(dataPath, 'utf-8');
-  pincodeData = JSON.parse(rawData);
+  pincodeData = require('../../data/bangalore-pincodes.json');
   console.log(`[API] Successfully loaded ${pincodeData.length} Bangalore postal records.`);
 } catch (error) {
-  console.error('[API] Failed to load dataset from:', dataPath, error);
+  try {
+    const dataPath = path.join(__dirname, '..', '..', 'data', 'bangalore-pincodes.json');
+    const rawData = fs.readFileSync(dataPath, 'utf-8');
+    pincodeData = JSON.parse(rawData);
+    console.log(`[API] Successfully loaded ${pincodeData.length} records via filesystem fallback.`);
+  } catch (fsError) {
+    console.error('[API] Failed to load dataset:', error, fsError);
+  }
 }
 
 // Popular locations for quick UI shortcuts
@@ -99,7 +103,12 @@ app.get('/api/search', (req, res) => {
   });
 });
 
-// Start listening
-app.listen(PORT, () => {
-  console.log(`[API] Bangalore Pincode Explorer server running on http://localhost:${PORT}`);
-});
+// Start listening if executed directly (e.g., node src/index.js)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`[API] Bangalore Pincode Explorer server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
+

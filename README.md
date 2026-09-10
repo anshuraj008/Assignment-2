@@ -189,6 +189,8 @@ curl "http://localhost:4000/api/search?q=5600"
 
 ```text
 bangalore-pincode-explorer/
+├── api/
+│   └── index.js                 # Vercel serverless function entrypoint
 ├── client/
 │   ├── src/
 │   │   ├── App.jsx              # Search input, UI state, result cards, popular chips
@@ -205,8 +207,23 @@ bangalore-pincode-explorer/
 │   └── bangalore-pincodes.json  # Curated Bangalore pincode dataset
 ├── .gitignore                   # Git ignore for node_modules, build artifacts, env
 ├── package.json                 # Root npm orchestrator with concurrently scripts
+├── vercel.json                  # Vercel monorepo deployment & routing configuration
 └── README.md                    # Project blueprint and documentation
 ```
+
+---
+
+## Deploy to Vercel
+
+The project is fully pre-configured for **1-click Vercel deployment** as a full-stack application:
+
+1. Import this repository [`https://github.com/anshuraj008/Assignment-2`](https://github.com/anshuraj008/Assignment-2) in your [Vercel Dashboard](https://vercel.com/new).
+2. Keep the root directory as `./`.
+3. Vercel automatically detects `vercel.json`:
+   - **Build Command**: `npm run build --prefix client`
+   - **Output Directory**: `client/dist`
+   - **API Routes**: Automatically served via `/api` serverless function in `api/index.js`.
+4. Click **Deploy**. Both the React frontend and Express backend will go live together with no additional setup required!
 
 ---
 
