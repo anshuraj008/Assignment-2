@@ -4,10 +4,11 @@
   "description": "Full-stack Bangalore pincode and area explorer built with React, Vite, Express and Node.js",
   "private": true,
   "scripts": {
+    "postinstall": "npm install --prefix client",
+    "build": "npm run build --prefix client",
     "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
     "install:all": "npm install && npm install --prefix server && npm install --prefix client",
-    "start": "npm run start --prefix server",
-    "build": "npm run build --prefix client"
+    "start": "node api/index.js"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
